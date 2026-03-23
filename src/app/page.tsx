@@ -1,65 +1,154 @@
 import Image from "next/image";
+import Link from "next/link";
+import { featuredPhotos } from "@/app/data/photos";
+import { FeaturedPhotoCard } from "@/app/components/PhotoCard"
 
 export default function Home() {
+  const heroPhoto = featuredPhotos[0];
+  const showcasePhotos = featuredPhotos.slice(1, 5);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+      <div className="bg-black text-white">
+        {/* Hero Section */}
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+          {/* Background image */}
+          <div className="absolute inset-0">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+                src={heroPhoto.src}
+                alt={heroPhoto.alt}
+                fill
+                className="object-cover opacity-50"
+                priority
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black" />
+          </div>
+
+          {/* Hero content */}
+          <div className="relative z-10 text-center px-6">
+            <p className="text-amber-400 text-xs tracking-[0.5em] uppercase mb-6">
+              Photography Portfolio
+            </p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-wider mb-6">
+              Jermin Odcheo
+            </h1>
+            <p className="text-white/60 text-base md:text-lg font-light tracking-widest max-w-md mx-auto mb-12">
+              Capturing moments in time — landscapes, streets, and the quiet
+              beauty in between.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                  href="/gallery"
+                  className="px-8 py-3 bg-amber-400 text-black text-xs tracking-widest uppercase font-medium hover:bg-amber-300 transition-colors"
+              >
+                View Gallery
+              </Link>
+              <Link
+                  href="/about"
+                  className="px-8 py-3 border border-white/30 text-white/80 text-xs tracking-widest uppercase hover:border-white hover:text-white transition-colors"
+              >
+                About Me
+              </Link>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg
+                className="w-6 h-6 text-white/40"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+              <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </section>
+
+        {/* Featured Work */}
+        <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-3">
+              Selected Work
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light tracking-widest">
+              Featured Shots
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {showcasePhotos.map((photo, i) => (
+                <FeaturedPhotoCard key={photo.id} photo={photo} priority={i < 2} />
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+                href="/gallery"
+                className="inline-flex items-center gap-2 text-sm tracking-widest uppercase text-white/60 hover:text-amber-400 transition-colors group"
+            >
+              View Full Gallery
+              <svg
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+              >
+                <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Link>
+          </div>
+        </section>
+
+        {/* Stats / Brief About */}
+        <section className="border-t border-white/10 py-20 px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            {[
+              { value: "15+", label: "Photos" },
+              { value: "5", label: "Categories" },
+              { value: "3+", label: "Years Shooting" },
+              { value: "∞", label: "Stories Told" },
+            ].map(({ value, label }) => (
+                <div key={label}>
+                  <p className="text-4xl md:text-5xl font-light text-amber-400 mb-2">
+                    {value}
+                  </p>
+                  <p className="text-xs tracking-widest uppercase text-white/40">
+                    {label}
+                  </p>
+                </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-24 px-6 lg:px-8 text-center">
+          <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-4">
+            Get in Touch
+          </p>
+          <h2 className="text-3xl md:text-4xl font-light tracking-widest mb-6">
+            Let&apos;s Work Together
+          </h2>
+          <p className="text-white/50 max-w-md mx-auto mb-10 leading-relaxed">
+            Interested in collaborating or just want to say hello? I&apos;d love
+            to hear from you.
+          </p>
+          <Link
+              href="/contact"
+              className="inline-block px-10 py-4 border border-amber-400 text-amber-400 text-xs tracking-widest uppercase hover:bg-amber-400 hover:text-black transition-all duration-300"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Contact Me
+          </Link>
+        </section>
+      </div>
   );
 }
