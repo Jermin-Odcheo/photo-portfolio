@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { featuredPhotos } from "@/app/data/photos";
-import { FeaturedPhotoCard } from "@/app/components/PhotoCard"
+import { FeaturedPhotoCard } from "@/app/components/PhotoCard";
+import ContactForm from "@/app/components/Contactform";
 
 export default function Home() {
   const heroPhoto = featuredPhotos[0];
@@ -10,7 +11,7 @@ export default function Home() {
   return (
       <div className="bg-black text-white">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden scroll-mt-28">
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
@@ -20,7 +21,7 @@ export default function Home() {
                 className="object-cover opacity-50"
                 priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black" />
+            <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/20 to-black" />
           </div>
 
           {/* Hero content */}
@@ -70,7 +71,7 @@ export default function Home() {
         </section>
 
         {/* Featured Work */}
-        <section className="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
+        <section id="featured" className="py-24 px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-28">
           <div className="text-center mb-16">
             <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-3">
               Selected Work
@@ -110,7 +111,7 @@ export default function Home() {
         </section>
 
         {/* Stats / Brief About */}
-        <section className="border-t border-white/10 py-20 px-6 lg:px-8">
+        <section id="stats" className="border-t border-white/10 py-20 px-6 lg:px-8 scroll-mt-28">
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
             {[
               { value: "15+", label: "Photos" },
@@ -130,24 +131,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-24 px-6 lg:px-8 text-center">
-          <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-4">
-            Get in Touch
-          </p>
-          <h2 className="text-3xl md:text-4xl font-light tracking-widest mb-6">
-            Let&apos;s Work Together
-          </h2>
-          <p className="text-white/50 max-w-md mx-auto mb-10 leading-relaxed">
-            Interested in collaborating or just want to say hello? I&apos;d love
-            to hear from you.
-          </p>
-          <Link
-              href="/contact"
-              className="inline-block px-10 py-4 border border-amber-400 text-amber-400 text-xs tracking-widest uppercase hover:bg-amber-400 hover:text-black transition-all duration-300"
-          >
-            Contact Me
-          </Link>
+        {/* Contact section embedded on the home page */}
+        <section id="contact" className="py-24 px-6 lg:px-8 scroll-mt-28">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-4">
+              Get in Touch
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light tracking-widest mb-6">
+              Let&apos;s Work Together
+            </h2>
+            <p className="text-white/50 max-w-md mx-auto leading-relaxed">
+              Interested in collaborating or just want to say hello? I&apos;d love
+              to hear from you.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <ContactForm />
+          </div>
         </section>
       </div>
   );

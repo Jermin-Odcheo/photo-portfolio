@@ -3,6 +3,7 @@
 import React, { useState, SubmitEvent } from "react";
 
 export default function ContactForm() {
+
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
         "idle"
     );
