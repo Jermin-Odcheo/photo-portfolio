@@ -36,7 +36,7 @@ export default function Navbar() {
             return;
         }
 
-        const handleScroll = () => {
+        const syncNavFromViewport = () => {
             setIsVisible(window.scrollY > 80);
 
             const sections = document.querySelectorAll("section[id]");
@@ -59,11 +59,18 @@ export default function Navbar() {
             setActiveSection(currentSection);
         };
 
-        handleScroll();
-        window.addEventListener("scroll", handleScroll, { passive: true });
+        // Run multiple times to cover browser back/forward scroll restoration timing.
+        syncNavFromViewport();
+        requestAnimationFrame(syncNavFromViewport);
+
+        window.addEventListener("scroll", syncNavFromViewport, { passive: true });
+        window.addEventListener("pageshow", syncNavFromViewport);
+        window.addEventListener("resize", syncNavFromViewport);
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", syncNavFromViewport);
+            window.removeEventListener("pageshow", syncNavFromViewport);
+            window.removeEventListener("resize", syncNavFromViewport);
         };
     }, [isHomePage]);
 
