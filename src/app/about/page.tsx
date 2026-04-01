@@ -41,7 +41,7 @@ export default function AboutPage() {
                             </h2>
                             <div className="space-y-4 text-white/60 leading-relaxed">
                                 <p>
-                                    I&apos;m a software developer based in California, and
+                                    I&apos;m a software developer based in Australia/Philippines, and
                                     photography is one of my favorite hobbies. It helps me slow
                                     down, pay attention, and appreciate the quiet moments that
                                     often go unnoticed.
@@ -80,12 +80,14 @@ export default function AboutPage() {
                             <div className="flex flex-wrap gap-2">
                                 {[
                                     "Next.js",
+                                    "Javascript",
+                                    "Java",
                                     "TypeScript",
                                     "React",
                                     "Tailwind CSS",
                                     "Node.js",
                                     "Python",
-                                    "PostgreSQL",
+                                    "SQL",
                                 ].map((tech) => (
                                     <span
                                         key={tech}
