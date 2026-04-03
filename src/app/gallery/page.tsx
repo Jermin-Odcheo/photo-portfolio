@@ -163,7 +163,7 @@ export default function GalleryPage() {
                                         {topStripPhotos.map((photo) => (
                                             <article key={photo.id} className="group relative overflow-hidden border border-white/10 lg:h-full">
                                                 <div
-                                                    className="relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-auto lg:h-full min-h-60"
+                                                    className="relative w-full aspect-4/3 sm:aspect-3/2 lg:aspect-auto lg:h-full min-h-60"
                                                 >
                                                     <Image
                                                         src={photo.src}
