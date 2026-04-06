@@ -4,7 +4,8 @@ export type Category =
     | "portrait"
     | "street"
     | "nature"
-    | "architecture";
+    | "architecture"
+    | "moonshots";
 
 export interface Photo {
     id: string;

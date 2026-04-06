@@ -12,7 +12,15 @@ const categories = Array.from(new Set(photos.map((photo) => photo.category)));
 const introPhotos = photos.slice(0, 6);
 
 function formatCategoryLabel(category: string) {
-    return category.charAt(0).toUpperCase() + category.slice(1);
+    if (category === "moonshots") {
+        return "Moon Shots";
+    }
+
+    return category
+        .split(/[-_\s]+/)
+        .filter(Boolean)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
 }
 
 export default function GalleryPage() {
@@ -79,7 +87,7 @@ export default function GalleryPage() {
                         <Link
                             key={photo.id}
                             href={`#category-${photo.category}`}
-                            className="group relative aspect-3/4 overflow-hidden border border-white/10"
+                            className="group relative aspect-square overflow-hidden border border-white/10"
                         >
                             <Image
                                 src={photo.src}
@@ -94,6 +102,9 @@ export default function GalleryPage() {
                                     {formatCategoryLabel(photo.category)}
                                 </p>
                                 <p className="text-xs text-white/90 truncate">{photo.title}</p>
+                                {photo.location && (
+                                    <p className="text-[11px] text-white/60 mt-1 truncate">{photo.location}</p>
+                                )}
                             </div>
                         </Link>
                     ))}
@@ -123,13 +134,10 @@ export default function GalleryPage() {
                                 <div className="grid lg:grid-cols-12 gap-4">
                                     <article
                                         className={`group relative overflow-hidden border border-white/10 ${
-                                            isReversed ? "lg:order-2 lg:col-span-7" : "lg:col-span-7"
+                                            isReversed ? "lg:order-2 lg:col-span-8" : "lg:col-span-8"
                                         }`}
                                     >
-                                        <div
-                                            className="relative w-full"
-                                            style={{ aspectRatio: `${leadPhoto.width} / ${leadPhoto.height}` }}
-                                        >
+                                        <div className="relative w-full aspect-square">
                                             <Image
                                                 src={leadPhoto.src}
                                                 alt={leadPhoto.alt}
@@ -157,14 +165,12 @@ export default function GalleryPage() {
 
                                     <div
                                         className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 ${
-                                            isReversed ? "lg:order-1 lg:col-span-5 lg:grid-rows-2" : "lg:col-span-5 lg:grid-rows-2"
+                                            isReversed ? "lg:order-1 lg:col-span-4 lg:grid-rows-2" : "lg:col-span-4 lg:grid-rows-2"
                                         }`}
                                     >
                                         {topStripPhotos.map((photo) => (
                                             <article key={photo.id} className="group relative overflow-hidden border border-white/10 lg:h-full">
-                                                <div
-                                                    className="relative w-full aspect-4/3 sm:aspect-3/2 lg:aspect-auto lg:h-full min-h-60"
-                                                >
+                                                <div className="relative w-full aspect-square lg:h-full">
                                                     <Image
                                                         src={photo.src}
                                                         alt={photo.alt}
@@ -189,10 +195,7 @@ export default function GalleryPage() {
                                     <div className="mt-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                                         {galleryPhotos.map((photo) => (
                                             <article key={photo.id} className="group relative overflow-hidden border border-white/10">
-                                                <div
-                                                    className="relative w-full"
-                                                    style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
-                                                >
+                                                <div className="relative w-full aspect-square">
                                                     <Image
                                                         src={photo.src}
                                                         alt={photo.alt}
@@ -200,8 +203,8 @@ export default function GalleryPage() {
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                                     />
-                                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-colors duration-300" />
-                                                    <div className="absolute inset-x-0 bottom-0 p-4 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
+                                                    <div className="absolute inset-x-0 bottom-0 p-4">
                                                         <p className="text-sm text-white/90 tracking-wide">{photo.title}</p>
                                                         {photo.location && (
                                                             <p className="text-[11px] text-white/60 mt-1">{photo.location}</p>

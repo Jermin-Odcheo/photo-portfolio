@@ -1,4 +1,5 @@
 import { Photo } from "@/app/types";
+import { cloudinaryImageUrl } from "@/lib/cloudinary";
 
 export const photos: Photo[] = [
     // Landscape
@@ -185,6 +186,62 @@ export const photos: Photo[] = [
         location: "San Francisco, California",
         date: "2024-10-31",
         featured: false,
+    },
+    // Moon Shots (Cloudinary)
+    {
+        id: "16",
+        title: "Waxing Crescent",
+        category: "moonshots",
+        src: cloudinaryImageUrl("DSCN3951_ylpbsh"),
+        alt: "Waxing Crescent. A thin sliver of the moon glows against the dark sky, with only a small fraction of the surface illuminated. Captured in Baguio City, Philippines using a COOLPIX A900.",
+        width: 4608,
+        height: 3456,
+        location: "Baguio City, Philippines (COOLPIX A900)",
+        featured: false,
+    },
+    {
+        id: "17",
+        title: "Waxing Gibbous (~85%)",
+        category: "moonshots",
+        src: cloudinaryImageUrl("DSCN3987_umdbos"),
+        alt: "Waxing Gibbous at roughly 85 percent illumination. Nearly full, the moon's dark maria and cratered highlands are sharply on display with only a sliver of shadow remaining. Captured in Baguio City, Philippines using a COOLPIX A900.",
+        width: 4608,
+        height: 3456,
+        location: "Baguio City, Philippines (COOLPIX A900)",
+        featured: false,
+    },
+    {
+        id: "18",
+        title: "First Quarter / Early Gibbous (~55%)",
+        category: "moonshots",
+        src: cloudinaryImageUrl("DSCN3962_ahprqy"),
+        alt: "First Quarter to early gibbous at roughly 55 percent illumination. Just past half-lit, the terminator line cuts across the surface and highlights crater detail with deep shadows. Captured in Baguio City, Philippines using a COOLPIX A900.",
+        width: 4608,
+        height: 3456,
+        location: "Baguio City, Philippines (COOLPIX A900)",
+        featured: false,
+    },
+    {
+        id: "19",
+        title: "Waxing Gibbous (~65%)",
+        category: "moonshots",
+        src: cloudinaryImageUrl("DSCN3979_trzjtf"),
+        alt: "Waxing Gibbous at roughly 65 percent illumination. More than half the moon is bathed in light, and the crisp shadow edge reveals dramatic surface texture. Captured in Baguio City, Philippines using a COOLPIX A900.",
+        width: 4608,
+        height: 3456,
+        location: "Baguio City, Philippines (COOLPIX A900)",
+        featured: false,
+    },
+    {
+        id: "20",
+        title: "Full Moon",
+        category: "moonshots",
+        src: cloudinaryImageUrl("DSCN3998_z2kuny"),
+        alt: "Full Moon. The entire lunar disc shines at full brightness, showcasing dark maria and bright crater rays across the surface. Captured in Baguio City, Philippines using a COOLPIX A900.",
+        width: 4608,
+        height: 3456,
+        location: "Baguio City, Philippines (COOLPIX A900)",
+        featured: true,
     },
 ];
 
