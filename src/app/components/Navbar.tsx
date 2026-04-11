@@ -17,6 +17,8 @@ const homeSections = [
     { id: "contact", label: "Contact" },
 ];
 
+const homeRouteLinks = [{ href: "/about", label: "About" }];
+
 export default function Navbar() {
     const pathname = usePathname();
     const isHomePage = pathname === "/";
@@ -88,7 +90,10 @@ export default function Navbar() {
     };
 
     const mobileItems = isHomePage
-        ? homeSections.map(({ id, label }) => ({ key: id, label, onClick: () => scrollToSection(id) }))
+        ? [
+              ...homeSections.map(({ id, label }) => ({ key: id, label, onClick: () => scrollToSection(id) })),
+              ...homeRouteLinks.map(({ href, label }) => ({ key: href, label, href })),
+          ]
         : routeLinks.map(({ href, label }) => ({ key: href, label, href }));
 
     return (
@@ -151,6 +156,17 @@ export default function Navbar() {
                                       </Link>
                                   );
                               })}
+
+                        {isHomePage &&
+                            homeRouteLinks.map(({ href, label }) => (
+                                <Link
+                                    key={href}
+                                    href={href}
+                                    className="px-3 py-1 rounded-full text-xs tracking-widest uppercase transition-all text-white/70 hover:text-white hover:bg-white/10"
+                                >
+                                    {label}
+                                </Link>
+                            ))}
                     </div>
 
                 </div>

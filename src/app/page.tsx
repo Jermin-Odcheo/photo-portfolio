@@ -43,12 +43,6 @@ export default function Home() {
               >
                 View Gallery
               </Link>
-              <Link
-                  href="/about"
-                  className="px-8 py-3 border border-white/30 text-white/80 text-xs tracking-widest uppercase hover:border-white hover:text-white transition-colors"
-              >
-                About Me
-              </Link>
             </div>
           </div>
 
