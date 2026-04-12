@@ -6,12 +6,14 @@ import ContactForm from "@/app/components/Contactform";
 
 export default function Home() {
   const heroPhoto = featuredPhotos[0];
-  const showcasePhotos = featuredPhotos.slice(1, 5);
+  const showcasePhotos = featuredPhotos.slice(1);
+  const featuredAspectPattern = ["4 / 3", "3 / 4", "1 / 1", "16 / 10", "5 / 4", "4 / 5"];
+  const pageGutter = "px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20";
 
   return (
       <div className="bg-black text-white">
         {/* Hero Section */}
-        <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden scroll-mt-28">
+        <section id="hero" className="relative min-h-svh flex items-center justify-center overflow-hidden scroll-mt-28">
           {/* Background image */}
           <div className="absolute inset-0">
             <Image
@@ -25,7 +27,7 @@ export default function Home() {
           </div>
 
           {/* Hero content */}
-          <div className="relative z-10 text-center px-6">
+          <div className={`relative z-10 w-full max-w-screen-2xl mx-auto text-center ${pageGutter}`}>
             <p className="text-amber-400 text-xs tracking-[0.5em] uppercase mb-6">
               Photography Portfolio
             </p>
@@ -65,7 +67,7 @@ export default function Home() {
         </section>
 
         {/* Featured Work */}
-        <section id="featured" className="py-24 px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-28">
+        <section id="featured" className={`py-24 max-w-screen-2xl mx-auto scroll-mt-28 ${pageGutter}`}>
           <div className="text-center mb-16">
             <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-3">
               Selected Work
@@ -75,9 +77,15 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-5">
             {showcasePhotos.map((photo, i) => (
-                <FeaturedPhotoCard key={photo.id} photo={photo} priority={i < 2} />
+                <FeaturedPhotoCard
+                  key={photo.id}
+                  photo={photo}
+                  priority={i < 2}
+                  className="mb-4 break-inside-avoid md:mb-5"
+                  aspectRatio={featuredAspectPattern[i % featuredAspectPattern.length]}
+                />
             ))}
           </div>
 
@@ -105,7 +113,7 @@ export default function Home() {
         </section>
 
         {/* Stats / Brief About */}
-        <section id="stats" className="border-t border-white/10 py-20 px-6 lg:px-8 scroll-mt-28">
+        <section id="stats" className={`border-t border-white/10 py-20 scroll-mt-28 ${pageGutter}`}>
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
             {[
               { value: "15+", label: "Photos" },
@@ -126,7 +134,7 @@ export default function Home() {
         </section>
 
         {/* Contact section embedded on the home page */}
-        <section id="contact" className="py-24 px-6 lg:px-8 scroll-mt-28">
+        <section id="contact" className={`py-24 scroll-mt-28 ${pageGutter}`}>
           <div className="max-w-4xl mx-auto text-center mb-12">
             <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-4">
               Get in Touch

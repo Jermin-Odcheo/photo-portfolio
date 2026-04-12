@@ -25,10 +25,11 @@ function formatCategoryLabel(category: string) {
 
 export default function GalleryPage() {
     const heroPhoto = photos[0];
+    const pageGutter = "px-5 sm:px-8 lg:px-12 xl:px-16 2xl:px-20";
 
     return (
         <div className="bg-black text-white min-h-screen">
-            <section className="relative min-h-[78vh] overflow-hidden border-b border-white/10">
+            <section className="relative min-h-[78svh] overflow-hidden border-b border-white/10">
                 <Image
                     src={heroPhoto.src}
                     alt={heroPhoto.alt}
@@ -39,7 +40,7 @@ export default function GalleryPage() {
                 />
                 <div className="absolute inset-0 bg-linear-to-b from-black/45 via-black/70 to-black" />
 
-                <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-20 flex flex-col gap-10">
+                <div className={`relative max-w-screen-2xl mx-auto pt-36 pb-20 flex flex-col gap-10 ${pageGutter}`}>
                     <div className="max-w-3xl">
                         <p className="text-amber-400 text-xs tracking-[0.45em] uppercase mb-4">
                             Visual Journal
@@ -53,12 +54,7 @@ export default function GalleryPage() {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3">
-                        <a
-                            href="#gallery-grid"
-                            className="px-6 py-3 bg-amber-400 text-black text-xs tracking-widest uppercase font-medium hover:bg-amber-300 transition-colors"
-                        >
-                            Start Exploring
-                        </a>
+
                         {categories.map((category) => (
                             <a
                                 key={category}
@@ -72,7 +68,7 @@ export default function GalleryPage() {
                 </div>
             </section>
 
-            <section className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+            <section className={`max-w-screen-2xl mx-auto py-10 ${pageGutter}`}>
                 <div className="flex items-center justify-between gap-4 mb-5">
                     <p className="text-amber-400 text-xs tracking-[0.35em] uppercase">
                         Quick Preview
@@ -111,7 +107,7 @@ export default function GalleryPage() {
                 </div>
             </section>
 
-            <div id="gallery-grid" className="max-w-7xl mx-auto px-6 lg:px-8 pb-24 space-y-24 scroll-mt-28">
+            <div id="gallery-grid" className={`max-w-screen-2xl mx-auto pb-24 space-y-24 scroll-mt-28 ${pageGutter}`}>
                 {categories.map((category) => {
                     const photosInCategory = photos.filter((photo) => photo.category === category);
                     const [leadPhoto, ...otherPhotos] = photosInCategory;

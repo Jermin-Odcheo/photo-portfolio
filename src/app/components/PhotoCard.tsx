@@ -68,17 +68,23 @@ export default function PhotoCard({ photo, priority = false }: PhotoCardProps) {
 interface FeaturedPhotoCardProps {
     photo: Photo;
     priority?: boolean;
+    className?: string;
+    aspectRatio?: string;
 }
 
 export function FeaturedPhotoCard({
                                       photo,
                                       priority = false,
+                                      className,
+                                      aspectRatio,
                                   }: FeaturedPhotoCardProps) {
+    const featuredAspectRatio = aspectRatio ?? `${photo.width} / ${photo.height}`;
+
     return (
-        <Link href="/gallery" className="group block relative overflow-hidden">
+        <Link href="/gallery" className={`group block relative overflow-hidden ${className ?? ""}`}>
             <div
                 className="relative w-full overflow-hidden"
-                style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
+                style={{ aspectRatio: featuredAspectRatio }}
             >
                 <Image
                     src={photo.src}
@@ -88,7 +94,7 @@ export function FeaturedPhotoCard({
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     priority={priority}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
           <span className="text-xs text-amber-400 uppercase tracking-widest">
             {photo.category}
