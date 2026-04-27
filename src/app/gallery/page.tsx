@@ -114,6 +114,7 @@ export default function GalleryPage() {
                     const topStripPhotos = otherPhotos.slice(0, 2);
                     const galleryPhotos = otherPhotos.slice(2);
                     const isReversed = categories.indexOf(category) % 2 === 1;
+                    const isKoreaCategory = category === "korea";
 
                     return (
                         <section key={category} id={`category-${category}`} className="scroll-mt-28 space-y-6">
@@ -127,89 +128,121 @@ export default function GalleryPage() {
                             </div>
 
                             <div className="border border-white/10 bg-zinc-950/40 p-3 md:p-4 lg:p-5">
-                                <div className="grid lg:grid-cols-12 gap-4">
-                                    <article
-                                        className={`group relative overflow-hidden border border-white/10 ${
-                                            isReversed ? "lg:order-2 lg:col-span-8" : "lg:col-span-8"
-                                        }`}
-                                    >
-                                        <div className="relative w-full aspect-square">
-                                            <Image
-                                                src={leadPhoto.src}
-                                                alt={leadPhoto.alt}
-                                                fill
-                                                priority
-                                                sizes="(max-width: 1024px) 100vw, 58vw"
-                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                            />
-                                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
-                                            <div className="absolute bottom-0 left-0 right-0 p-5">
-                                                <p className="text-[10px] tracking-[0.25em] uppercase text-amber-300 mb-2">
-                                                    Spotlight
-                                                </p>
-                                                <h3 className="text-lg md:text-2xl font-light tracking-wide text-white">
-                                                    {leadPhoto.title}
-                                                </h3>
-                                                {leadPhoto.location && (
-                                                    <p className="text-white/70 text-xs mt-2 tracking-wide">
-                                                        {leadPhoto.location}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <div
-                                        className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 ${
-                                            isReversed ? "lg:order-1 lg:col-span-4 lg:grid-rows-2" : "lg:col-span-4 lg:grid-rows-2"
-                                        }`}
-                                    >
-                                        {topStripPhotos.map((photo) => (
-                                            <article key={photo.id} className="group relative overflow-hidden border border-white/10 lg:h-full">
-                                                <div className="relative w-full aspect-square lg:h-full">
+                                {isKoreaCategory ? (
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                                        {photosInCategory.map((photo) => (
+                                            <article key={photo.id} className="group relative overflow-hidden border border-white/10 bg-black/70">
+                                                <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
                                                     <Image
                                                         src={photo.src}
                                                         alt={photo.alt}
                                                         fill
-                                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 34vw"
-                                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                                        className="object-contain bg-black p-2 transition-transform duration-700 group-hover:scale-105"
                                                     />
-                                                    <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
-                                                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                                                        <p className="text-sm text-white/90 tracking-wide">{photo.title}</p>
+                                                    <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-transparent" />
+                                                    <div className="absolute inset-x-0 bottom-0 p-5">
+                                                        <p className="text-[10px] tracking-[0.25em] uppercase text-amber-300 mb-2">
+                                                            Korea
+                                                        </p>
+                                                        <p className="text-sm md:text-base text-white/90 tracking-wide">
+                                                            {photo.title}
+                                                        </p>
                                                         {photo.location && (
-                                                            <p className="text-[11px] text-white/60 mt-1">{photo.location}</p>
+                                                            <p className="text-xs text-white/60 mt-1">{photo.location}</p>
                                                         )}
                                                     </div>
                                                 </div>
                                             </article>
                                         ))}
                                     </div>
-                                </div>
-
-                                {galleryPhotos.length > 0 && (
-                                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                                        {galleryPhotos.map((photo) => (
-                                            <article key={photo.id} className="group relative overflow-hidden border border-white/10">
+                                ) : (
+                                    <>
+                                        <div className="grid lg:grid-cols-12 gap-4">
+                                            <article
+                                                className={`group relative overflow-hidden border border-white/10 ${
+                                                    isReversed ? "lg:order-2 lg:col-span-8" : "lg:col-span-8"
+                                                }`}
+                                            >
                                                 <div className="relative w-full aspect-square">
                                                     <Image
-                                                        src={photo.src}
-                                                        alt={photo.alt}
+                                                        src={leadPhoto.src}
+                                                        alt={leadPhoto.alt}
                                                         fill
-                                                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                                        priority
+                                                        sizes="(max-width: 1024px) 100vw, 58vw"
                                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                                     />
-                                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
-                                                    <div className="absolute inset-x-0 bottom-0 p-4">
-                                                        <p className="text-sm text-white/90 tracking-wide">{photo.title}</p>
-                                                        {photo.location && (
-                                                            <p className="text-[11px] text-white/60 mt-1">{photo.location}</p>
+                                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+                                                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                                                        <p className="text-[10px] tracking-[0.25em] uppercase text-amber-300 mb-2">
+                                                            Spotlight
+                                                        </p>
+                                                        <h3 className="text-lg md:text-2xl font-light tracking-wide text-white">
+                                                            {leadPhoto.title}
+                                                        </h3>
+                                                        {leadPhoto.location && (
+                                                            <p className="text-white/70 text-xs mt-2 tracking-wide">
+                                                                {leadPhoto.location}
+                                                            </p>
                                                         )}
                                                     </div>
                                                 </div>
                                             </article>
-                                        ))}
-                                    </div>
+
+                                            <div
+                                                className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 ${
+                                                    isReversed ? "lg:order-1 lg:col-span-4 lg:grid-rows-2" : "lg:col-span-4 lg:grid-rows-2"
+                                                }`}
+                                            >
+                                                {topStripPhotos.map((photo) => (
+                                                    <article key={photo.id} className="group relative overflow-hidden border border-white/10 lg:h-full">
+                                                        <div className="relative w-full aspect-square lg:h-full">
+                                                            <Image
+                                                                src={photo.src}
+                                                                alt={photo.alt}
+                                                                fill
+                                                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 34vw"
+                                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                                            />
+                                                            <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+                                                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                                                                <p className="text-sm text-white/90 tracking-wide">{photo.title}</p>
+                                                                {photo.location && (
+                                                                    <p className="text-[11px] text-white/60 mt-1">{photo.location}</p>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {galleryPhotos.length > 0 && (
+                                            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                                                {galleryPhotos.map((photo) => (
+                                                    <article key={photo.id} className="group relative overflow-hidden border border-white/10">
+                                                        <div className="relative w-full aspect-square">
+                                                            <Image
+                                                                src={photo.src}
+                                                                alt={photo.alt}
+                                                                fill
+                                                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                                            />
+                                                            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
+                                                            <div className="absolute inset-x-0 bottom-0 p-4">
+                                                                <p className="text-sm text-white/90 tracking-wide">{photo.title}</p>
+                                                                {photo.location && (
+                                                                    <p className="text-[11px] text-white/60 mt-1">{photo.location}</p>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </>
                                 )}
                             </div>
                         </section>
