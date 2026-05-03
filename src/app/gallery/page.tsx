@@ -73,7 +73,7 @@ export default function GalleryPage() {
                     <p className="text-amber-400 text-xs tracking-[0.35em] uppercase">
                         Quick Preview
                     </p>
-                    <p className="text-white/40 text-xs tracking-widest uppercase">
+                    <p className="text-amber-400 text-xs tracking-widest uppercase">
                         {photos.length} Total Photos
                     </p>
                 </div>
@@ -122,7 +122,7 @@ export default function GalleryPage() {
                                 <h2 className="text-xl md:text-2xl font-light tracking-wider capitalize">
                                     {formatCategoryLabel(category)}
                                 </h2>
-                                <span className="text-xs tracking-widest uppercase text-white/40">
+                                <span className="text-xs tracking-widest uppercase text-amber-400">
                                     {photosInCategory.length} Photos
                                 </span>
                             </div>
