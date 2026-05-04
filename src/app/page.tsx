@@ -134,21 +134,19 @@ export default function Home() {
         </section>
 
         {/* Contact section embedded on the home page */}
-        <section id="contact" className={`py-24 scroll-mt-28 ${pageGutter}`}>
-          <div className="max-w-4xl mx-auto text-center mb-12">
+        <section className={`relative py-24 scroll-mt-28 ${pageGutter}`}>
+          <span
+            id="contact"
+            className="absolute top-1/4 left-0 h-40 w-0 -translate-y-1/4"
+            aria-hidden="true"
+          />
+          <div className="max-w-2xl mx-auto text-center mb-12">
             <p className="text-amber-400 text-xs tracking-[0.4em] uppercase mb-4">
               Get in Touch
             </p>
-            <h2 className="text-3xl md:text-4xl font-light tracking-widest mb-6">
-              Let&apos;s Work Together
-            </h2>
-            <p className="text-white/50 max-w-md mx-auto leading-relaxed">
-              Interested in collaborating or just want to say hello? I&apos;d love
-              to hear from you.
-            </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <ContactForm />
           </div>
         </section>
