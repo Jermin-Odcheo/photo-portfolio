@@ -12,7 +12,7 @@ export const photos: Photo[] = [
         width: 4608,
         height: 3456,
         location: "Baguio City, Philippines (COOLPIX A900)",
-        featured: false,
+        featured: true,
     },
     {
         id: "2",
@@ -34,7 +34,7 @@ export const photos: Photo[] = [
         width: 4608,
         height: 3456,
         location: "Baguio City, Philippines (COOLPIX A900)",
-        featured: false,
+        featured: true,
     },
     {
         id: "4",
@@ -68,7 +68,7 @@ export const photos: Photo[] = [
         width: 1200,
         height: 800,
         location: "Korea",
-        featured: false,
+        featured: true,
     },
     {
         id: "7",
@@ -79,7 +79,7 @@ export const photos: Photo[] = [
         width: 1200,
         height: 800,
         location: "Korea",
-        featured: false,
+        featured: true,
     },
     {
         id: "8",
@@ -101,7 +101,7 @@ export const photos: Photo[] = [
         width: 1200,
         height: 800,
         location: "Korea",
-        featured: false,
+        featured: true,
     },
     {
         id: "10",
@@ -112,7 +112,7 @@ export const photos: Photo[] = [
         width: 1200,
         height: 800,
         location: "Korea",
-        featured: false,
+        featured: true,
     },
 ];
 

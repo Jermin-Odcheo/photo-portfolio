@@ -113,25 +113,25 @@ export default function Home() {
         </section>
 
         {/* Stats / Brief About */}
-        <section id="stats" className={`border-t border-white/10 py-20 scroll-mt-28 ${pageGutter}`}>
-          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            {[
-              { value: "15+", label: "Photos" },
-              { value: "5", label: "Categories" },
-              { value: "3+", label: "Years Shooting" },
-              { value: "∞", label: "Stories Told" },
-            ].map(({ value, label }) => (
-                <div key={label}>
-                  <p className="text-4xl md:text-5xl font-light text-amber-400 mb-2">
-                    {value}
-                  </p>
-                  <p className="text-xs tracking-widest uppercase text-white/40">
-                    {label}
-                  </p>
-                </div>
-            ))}
-          </div>
-        </section>
+        {/*<section id="stats" className={`border-t border-white/10 py-20 scroll-mt-28 ${pageGutter}`}>*/}
+        {/*  <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">*/}
+        {/*    {[*/}
+        {/*      { value: "15+", label: "Photos" },*/}
+        {/*      { value: "5", label: "Categories" },*/}
+        {/*      { value: "3+", label: "Years Shooting" },*/}
+        {/*      { value: "∞", label: "Stories Told" },*/}
+        {/*    ].map(({ value, label }) => (*/}
+        {/*        <div key={label}>*/}
+        {/*          <p className="text-4xl md:text-5xl font-light text-amber-400 mb-2">*/}
+        {/*            {value}*/}
+        {/*          </p>*/}
+        {/*          <p className="text-xs tracking-widest uppercase text-white/40">*/}
+        {/*            {label}*/}
+        {/*          </p>*/}
+        {/*        </div>*/}
+        {/*    ))}*/}
+        {/*  </div>*/}
+        {/*</section>*/}
 
         {/* Contact section embedded on the home page */}
         <section className={`relative py-24 scroll-mt-28 ${pageGutter}`}>
